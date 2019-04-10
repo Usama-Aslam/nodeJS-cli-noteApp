@@ -9,25 +9,19 @@ const addNote = (title, body) => {
     body
   };
   try {
-    var oldNotes = fs.readFileSync("greeting.json");
-    note = JSON.parse(oldNotes);
+    note = fetchNote();
   } catch (error) {}
 
   var duplicateNote = note.filter(note => note.title == title);
 
   if (duplicateNote.length == 0) {
     note.push(newNote);
-
-    fs.writeFileSync("greeting.json", JSON.stringify(note));
-    console.log("adding Note:", title, body);
+    writeNote(note);
   }
-  // fs.appendFileSync("greeting.txt");
 };
 
 const getAll = () => {
-  var notes = fs.readFileSync("greeting.json");
-  var newNote = JSON.parse(notes);
-  console.log("getting all:", newNote);
+  console.log("getting all:", fetchNote());
 };
 
 const getNote = title => {
@@ -36,6 +30,14 @@ const getNote = title => {
 
 const removeNote = () => {
   console.log("remove Note:");
+};
+
+const fetchNote = () => {
+  return JSON.parse(fs.readFileSync("greeting.json"));
+};
+
+const writeNote = notes => {
+  fs.writeFileSync("greeting.json", JSON.stringify(notes));
 };
 
 module.exports = {
