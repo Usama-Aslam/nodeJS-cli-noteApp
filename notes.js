@@ -38,7 +38,7 @@ const removeNote = title => {
     writeNote(newNotes);
     console.log("Old Notes:", notes);
     console.log("New Notes:", fetchNote());
-  } else console.log("notes not found");
+  } else console.log("-------notes not found----------");
 };
 
 const fetchNote = () => {
