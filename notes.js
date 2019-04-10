@@ -17,7 +17,7 @@ const addNote = (title, body) => {
   if (duplicateNote.length == 0) {
     note.push(newNote);
     writeNote(note);
-  }
+  } else console.log("note Title:Taken");
 };
 
 const getAll = () => {
@@ -26,10 +26,19 @@ const getAll = () => {
 
 const getNote = title => {
   console.log("getting Note:", title);
+  var notes = fetchNote();
+  var searchedNote = notes.filter(note => note.title == title);
+  console.log(searchedNote);
 };
 
-const removeNote = () => {
-  console.log("remove Note:");
+const removeNote = title => {
+  var notes = fetchNote();
+  var newNotes = notes.filter(note => note.title !== title);
+  if (newNotes.length !== notes.length) {
+    writeNote(newNotes);
+    console.log("Old Notes:", notes);
+    console.log("New Notes:", fetchNote());
+  } else console.log("notes not found");
 };
 
 const fetchNote = () => {
