@@ -32,6 +32,7 @@ const getNote = title => {
 };
 
 const removeNote = title => {
+  // debugger;
   var notes = fetchNote();
   var newNotes = notes.filter(note => note.title !== title);
   if (newNotes.length !== notes.length) {
@@ -48,6 +49,7 @@ const fetchNote = () => {
 const writeNote = notes => {
   fs.writeFileSync("greeting.json", JSON.stringify(notes));
 };
+
 
 module.exports = {
   addNote,
